@@ -27,7 +27,7 @@ public class Room {
         }
         //sets roomID 
         if(floor == 1){
-            if (numberOfBeds == 5){
+            if (numberOfBeds == 6){
                setRoomID(roomIDEntry[0]);
             }
             if (numberOfBeds < 5){
@@ -35,7 +35,7 @@ public class Room {
             }
         }
         else if (floor == 2){
-            if (numberOfBeds == 5){
+            if (numberOfBeds == 6){
                setRoomID(roomIDEntry[2]);
             }
             if (numberOfBeds < 5){
@@ -43,7 +43,7 @@ public class Room {
             }   
         }
         else if (floor == 3){
-            if (numberOfBeds == 5){
+            if (numberOfBeds == 6){
                setRoomID(roomIDEntry[4]);
             }
             if (numberOfBeds < 5){
@@ -89,7 +89,7 @@ public class Room {
         int entry = input.nextInt();
         this.numberOfBeds = numberOfBeds - entry;
         if (numberOfBeds >= 0 && numberOfBeds <= 6 && entry > 0 && entry < 3){
-            System.out.println("There are "+numberOfBeds+" left.");
+            System.out.println("There are "+ numberOfBeds +" left.");
             
         }else {
             System.out.println("Please enter 1 or 2.");
@@ -123,29 +123,32 @@ public class Room {
     }
     public void whatFloor(){
         Scanner input = new Scanner(System.in);
-        System.out.print("\nWhat what sort of room would you like? \nType \"1\" for a one bedded room.\n" +
-                "Type \"2\" for a double bed room.\nType \"3\" for a suit.\nThe prices are 200$, 250$ and 300$.\t: ");
+        System.out.print("\nWhat what sort of room would you like?\nThe prices are 200$ (one bed), 250$(double bed) and 300$(suit).\nType \"1\" for a one bed room.\n" +
+                "Type \"2\" for a double bed room.\nType \"3\" for a suit.\t: ");
         String answer = input.next();
+        
+        //a switch that set the fields to values and then goes to a method that lets you decide 
         switch (answer) {
             case "1":
                 setPricePerNight(200.0);
                 setFloor(1);
-                setInternetAccess(true);
-                numberBeds();
+                setInternetAccess(true); //a boolean is default on false
+                //numberBeds();
                 break;
             case "2":
                 setPricePerNight(250.0);
                 setFloor(2);
-                setInternetAccess(true);
-                numberBeds();
+                setInternetAccess(true); //a boolean is default on false
+                //numberBeds(); 
                 break;
             case "3":
                 setPricePerNight(300.0);
                 setFloor(3);
-                setInternetAccess(true);
+                setInternetAccess(true); //a boolean is default on false
                 numberBeds();
                 break;
             default:
+                //This will run the method again.
                 System.out.print("\nNot a valid floor. Please enter again.\n");
                 whatFloor();
         }

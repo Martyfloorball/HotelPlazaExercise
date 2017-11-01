@@ -46,16 +46,10 @@ class Staff{
 
    }
    
-   /*void printStaffList()throws Exception{
+   public void printStaffList()throws Exception{
       Scanner staffList = new Scanner (new File("StaffList.txt"));
       while (staffList.hasNextLine()){
-         StaffID = staffList.nextInt();
-         title = staffList.next();
-         firstName = staffList.next();
-         lastName = staffList.next();
-         phoneNumber = staffList.nextInt();
-         Salary = staffList.nextDouble();
-         System.out.println(toString());
+         System.out.println(staffList.nextLine());
       }
-   }*/    
+   }    
 }
