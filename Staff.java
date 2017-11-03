@@ -64,16 +64,16 @@ class Staff{
       title = console.next();
       switch(title){
          case "1": 
-            this.title = "director";
+            this.title = "Director";
             break;
          case "2":
-            this.title = "accountant";
+            this.title = "Accountant";
             break;     
          case "3":
-            this.title = "maintenance";
+            this.title = "Maintenance";
             break;
          case "4":
-            this.title = "receptionist";
+            this.title = "Receptionist";
             break;
          default:
             System.out.println("You didn't choose a title.");

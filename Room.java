@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Room {
     private String roomID;
-    private int numberOfBeds = 6; //ændre?
+    private int numberOfBeds = 6; 
     private boolean internetAccess;
     private double pricePerNight;
     private int floor;
@@ -11,11 +11,11 @@ public class Room {
     String bed;
 
 
-    public String toString(){
+    /*public String toString(){
         return roomID + " " + numberOfBeds + " " + internetAccess + " " + pricePerNight + " " + floor + " " + sum + " " + bed;
-    }
+    }*/
     
-    public void readRoomList(int floor)throws Exception{
+    public String readRoomList(int floor)throws Exception{
         Scanner roomList = new Scanner(new File("roomList.txt"));
         String[] roomIDEntry = new String[6];
         
@@ -27,34 +27,41 @@ public class Room {
         }
         //sets roomID 
         if(floor == 1){
-            if (numberOfBeds == 6){
+            if (numberOfBeds > 4){
+            System.out.print("1");
                setRoomID(roomIDEntry[0]);
             }
             if (numberOfBeds < 5){
+            System.out.print("2");
                setRoomID(roomIDEntry[1]);
             }
         }
         else if (floor == 2){
-            if (numberOfBeds == 6){
+            if (numberOfBeds > 4){
+            System.out.println("3");
                setRoomID(roomIDEntry[2]);
+               return roomIDEntry[2];
             }
-            if (numberOfBeds < 5){
+            else if (numberOfBeds < 5){
+            System.out.print("4");
                setRoomID(roomIDEntry[3]);
+               return roomIDEntry[3];
+               
             }   
         }
         else if (floor == 3){
-            if (numberOfBeds == 6){
+            if (numberOfBeds > 4){
+            System.out.print("5");
                setRoomID(roomIDEntry[4]);
             }
-            if (numberOfBeds < 5){
+            else if (numberOfBeds < 5){
+            System.out.print("6");
                setRoomID(roomIDEntry[5]);
             }
         }
+        return "";
     }
-    /*public void saveToArray(Scanner){
-        
-    }
-    */
+    
     public String internetCode(int floor) throws Exception {
         Scanner read = new Scanner(new File("internet.dat"));
         
@@ -133,13 +140,13 @@ public class Room {
                 setPricePerNight(200.0);
                 setFloor(1);
                 setInternetAccess(true); //a boolean is default on false
-                //numberBeds();
+                numberBeds();
                 break;
             case "2":
                 setPricePerNight(250.0);
                 setFloor(2);
                 setInternetAccess(true); //a boolean is default on false
-                //numberBeds(); 
+                numberBeds(); 
                 break;
             case "3":
                 setPricePerNight(300.0);
