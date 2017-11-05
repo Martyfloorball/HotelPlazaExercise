@@ -112,6 +112,7 @@ class Staff{
       while (staffList.hasNextLine()){
          System.out.println(staffList.nextLine());
       }
+      System.out.println(); //skip line
     }
     public int showStaffMenu() throws Exception{
       Scanner consoleStaff = new Scanner(System.in);

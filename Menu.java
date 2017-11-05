@@ -21,7 +21,7 @@ public class Menu{
             case 2: guest.createNewGuest(console); break;
             case 3: guest.readGuestList(); break;
             case 4: staff.createNewStaff(console); break;
-            //case 5: staff.printStaffList(); break;
+            case 5: staff.printStaffList(); break;
             case 6: booking.createBooking(); break;
             //case 7: changePriceForRoom(); break;
             //case 8: changeGuest(); break;
@@ -39,7 +39,7 @@ public class Menu{
     public static void menu(){
         System.out.println("1. Create Room");
         System.out.println("2. Create Guest");
-        System.out.println("3. Print Guestlist");
+        System.out.println("3. Print Guest Info");
         System.out.println("4. Create Staff Member");
         System.out.println("5. Print Stafflist");
         System.out.println("6. Create Booking");

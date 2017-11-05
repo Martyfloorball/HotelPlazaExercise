@@ -56,8 +56,10 @@ class Guest{
      
          
       System.out.println("Please enter guest ID: ");
-      int readGuest = console.nextInt()-n;
+      int readGuest = console.nextInt()-1;
       System.out.println(entry[readGuest]); 
+      
+      /* her kan bruges while loop samt to scanner (1 til nextLine og 1 til int token)*/
       
    }
    /*void printGuestList()throws Exception{
