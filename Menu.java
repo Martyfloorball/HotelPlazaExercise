@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Menu{
     int menuItem;
-    //menuItem = showMenu();
     
     public static int showMenu()throws Exception{
       Scanner console = new Scanner(System.in);
@@ -18,17 +17,18 @@ public class Menu{
          menuItem = console.nextInt();
          
          switch (menuItem){
-            case 1: Booking.addRoom(); break;
+            //case 1: Booking.addRoom(); break; //same as case 6
             case 2: guest.createNewGuest(console); break;
             case 3: guest.readGuestList(); break;
             case 4: staff.createNewStaff(console); break;
             case 5: staff.printStaffList(); break;
             case 6: booking.createBooking(); break;
-            case 7: room.changePriceForRoom(); break;
+            case 7: room.changePriceForRoom(); break; //set price per night for each room
             //case 8: changeGuest(); break;
             //case 9: changeStaff(); break;
             //case 10: extendBooking(); break;
-            //case 11: printBill(); break;
+            case 11: System.out.println(room.getNumberOfBeds()+ " beds left."); //printer kun 6???
+            //case 12: printBill(); break; //booking "addRoom" has receipt
             case 0: System.out.println("Goodbye"); break;
             default : System.out.println("Invalid, please type the number of the menu you wish to access");
          }
@@ -48,7 +48,8 @@ public class Menu{
         System.out.println("8. Change Guest");
         System.out.println("9. Change Staff");
         System.out.println("10. Extend Booking");
-        System.out.println("11. Print Receipt");
+        System.out.println("11. See beds avaliable");
+        System.out.println("12. Print Receipt");
         System.out.println("0. Exit");
     }
     /*public static void receipt() throws Exception{

@@ -28,22 +28,20 @@ public class Room {
         //sets roomID 
         if(floor == 1){
             if (numberOfBeds > 4){
-            System.out.print("1");
                setRoomID(roomIDEntry[0]);
+               return roomIDEntry[0];
             }
             if (numberOfBeds < 5){
-            System.out.print("2");
                setRoomID(roomIDEntry[1]);
+               return roomIDEntry[1];
             }
         }
         else if (floor == 2){
             if (numberOfBeds > 4){
-            System.out.println("3");
                setRoomID(roomIDEntry[2]);
                return roomIDEntry[2];
             }
             else if (numberOfBeds < 5){
-            System.out.print("4");
                setRoomID(roomIDEntry[3]);
                return roomIDEntry[3];
                
@@ -51,12 +49,12 @@ public class Room {
         }
         else if (floor == 3){
             if (numberOfBeds > 4){
-            System.out.print("5");
                setRoomID(roomIDEntry[4]);
+               return roomIDEntry[4];
             }
             else if (numberOfBeds < 5){
-            System.out.print("6");
                setRoomID(roomIDEntry[5]);
+               return roomIDEntry[5];
             }
         }
         return "";
@@ -90,19 +88,20 @@ public class Room {
         else return "Unavailable to reach that floor.";
                     
     }
-    public void numberBeds(){
+    public int numberBeds(){
         Scanner input = new Scanner(System.in);
         System.out.print("Would you like 1 or 2 beds in your room?\t:\t");
         int entry = input.nextInt();
         this.numberOfBeds = numberOfBeds - entry;
         if (numberOfBeds >= 0 && numberOfBeds <= 6 && entry > 0 && entry < 3){
-            System.out.println("There are "+ numberOfBeds +" left.");
+            System.out.println("There are "+ numberOfBeds +" beds left.");
             
         }else {
             System.out.println("Please enter 1 or 2.");
             numberOfBeds = 6;
             numberBeds();
         }
+        return numberOfBeds;
     }
     public void wholeSum(){
         Scanner input = new Scanner(System.in);
@@ -137,19 +136,19 @@ public class Room {
         //a switch that set the fields to values and then goes to a method that lets you decide 
         switch (answer) {
             case "1":
-                setPricePerNight();
+                setPricePerNight(200.0);
                 setFloor(1);
                 setInternetAccess(true); //a boolean is default on false
                 numberBeds();
                 break;
             case "2":
-                setPricePerNight();
+                setPricePerNight(250.0);
                 setFloor(2);
                 setInternetAccess(true); //a boolean is default on false
                 numberBeds(); 
                 break;
             case "3":
-                setPricePerNight();
+                setPricePerNight(300.0);
                 setFloor(3);
                 setInternetAccess(true); //a boolean is default on false
                 numberBeds();
@@ -164,8 +163,10 @@ public class Room {
     //change price per night for each room
     public void changePriceForRoom(){
        Scanner console = new Scanner(System.in);
-       System.out.print("Change the prices on the rooms:\n\"1\" Change one bed room.\n\"2\" Change double bed room.\n\"3\" Change suit.\nEnter\t:\t");
-       int answer = console.nextInt();
+       System.out.println("Enter new price for the room.");
+       setPricePerNight(console.nextDouble());
+       //System.out.print("Change the prices on the rooms:\n\"1\" Change one bed room.\n\"2\" Change double bed room.\n\"3\" Change suit.\nEnter\t:\t");       
+       /*int answer = console.nextInt();
        
        switch(answer){
          case 1 : 
@@ -182,8 +183,8 @@ public class Room {
             break; 
          default:
             System.out.println("Please enter 1, 2 or 3...");   
-            changePriceForRoom();      
-      }     
+            changePriceForRoom();    
+      }*/     
     }
     //getters
     public String getRoomID(){ return roomID; }
