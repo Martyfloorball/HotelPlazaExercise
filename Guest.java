@@ -42,31 +42,28 @@ class Guest{
       phoneNumber = console.nextInt();
       saveFile("GuestList.txt");
    }
-   public void readGuestList()throws Exception{
+    public void readGuestList()throws Exception{
       int n = 1;
-      Scanner read = new Scanner(new File("GuestList.txt"));
-      Scanner console = new Scanner(System.in);
-      String[] entry = new String[n];
+      Scanner read = new Scanner(new File("GuestList.txt")); //read from file
+      Scanner console = new Scanner(System.in); //user input
+      String[] entry = new String[n]; //initialize String array of n 
+   
       System.out.print("Please enter guest ID: ");
-      int readGuest = console.nextInt();
-      while (read.hasNextLine()){
-         for (int i = 0; i < entry.length; i++){
-            if (read.hasNextLine()){
-               entry[i] = read.nextLine();
-            }
-            if(read.nextInt() == readGuest){
+      int readGuest = console.nextInt(); //initialize int that takes in user input
+   
+      while (read.hasNextLine()){ //while the txt file has a line
+         Scanner readLine = new Scanner(read.next()); //new scanner that reads the first tokens of the "read" Scanner
+         for (int i = 0; i < entry.length; i++){ //loop the lenght of entry
+            entry[i] = read.nextLine(); //save to array
+            
+           if(readLine.nextInt() == readGuest){ //if match print the line
                System.out.println(entry[i]);
             }
          }
-     
-         
-      }
-      //System.out.println(entry[readGuest]); 
-      
-      /* her kan bruges while loop samt to scanner (1 til nextLine og 1 til int token)*/
-      
+      n++; //increment n that is used in the String array "entry"
+      } 
    }
-   /*void printGuestList()throws Exception{
+   public void printGuestList()throws Exception{
       Scanner guestList = new Scanner (new File("GuestList.txt"));
       while (guestList.hasNextLine()){
          guestID = guestList.nextInt();
@@ -77,7 +74,7 @@ class Guest{
          phoneNumber = guestList.nextInt();
          System.out.println(toString());
       }
-   }*/
+   }
    
    /*public int getGuestID(){
       return guestID;
