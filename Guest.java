@@ -46,18 +46,22 @@ class Guest{
       int n = 1;
       Scanner read = new Scanner(new File("GuestList.txt"));
       Scanner console = new Scanner(System.in);
-      n++;
       String[] entry = new String[n];
+      System.out.print("Please enter guest ID: ");
+      int readGuest = console.nextInt();
+      while (read.hasNextLine()){
          for (int i = 0; i < entry.length; i++){
             if (read.hasNextLine()){
                entry[i] = read.nextLine();
             }
+            if(read.nextInt() == readGuest){
+               System.out.println(entry[i]);
+            }
          }
      
          
-      System.out.println("Please enter guest ID: ");
-      int readGuest = console.nextInt()-1;
-      System.out.println(entry[readGuest]); 
+      }
+      //System.out.println(entry[readGuest]); 
       
       /* her kan bruges while loop samt to scanner (1 til nextLine og 1 til int token)*/
       

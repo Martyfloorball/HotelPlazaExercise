@@ -10,6 +10,7 @@ public class Menu{
       Staff staff = new Staff();
       Guest guest = new Guest();
       Booking booking = new Booking();
+      Room room = new Room();
       //Scanner staffList = new Scanner (new File("StaffList.txt")).useDelimiter(",");
       int menuItem = -1;
       while (menuItem != 0){
@@ -23,7 +24,7 @@ public class Menu{
             case 4: staff.createNewStaff(console); break;
             case 5: staff.printStaffList(); break;
             case 6: booking.createBooking(); break;
-            //case 7: changePriceForRoom(); break;
+            case 7: room.changePriceForRoom(); break;
             //case 8: changeGuest(); break;
             //case 9: changeStaff(); break;
             //case 10: extendBooking(); break;

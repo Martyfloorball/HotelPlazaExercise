@@ -131,25 +131,25 @@ public class Room {
     public void whatFloor(){
         Scanner input = new Scanner(System.in);
         System.out.print("\nWhat what sort of room would you like?\nThe prices are 200$ (one bed), 250$(double bed) and 300$(suit).\nType \"1\" for a one bed room.\n" +
-                "Type \"2\" for a double bed room.\nType \"3\" for a suit.\t: ");
+                     "Type \"2\" for a double bed room.\nType \"3\" for a suit.\nEnter\t:\t");
         String answer = input.next();
         
         //a switch that set the fields to values and then goes to a method that lets you decide 
         switch (answer) {
             case "1":
-                setPricePerNight(200.0);
+                setPricePerNight();
                 setFloor(1);
                 setInternetAccess(true); //a boolean is default on false
                 numberBeds();
                 break;
             case "2":
-                setPricePerNight(250.0);
+                setPricePerNight();
                 setFloor(2);
                 setInternetAccess(true); //a boolean is default on false
                 numberBeds(); 
                 break;
             case "3":
-                setPricePerNight(300.0);
+                setPricePerNight();
                 setFloor(3);
                 setInternetAccess(true); //a boolean is default on false
                 numberBeds();
@@ -161,7 +161,30 @@ public class Room {
         }
 
     }
-
+    //change price per night for each room
+    public void changePriceForRoom(){
+       Scanner console = new Scanner(System.in);
+       System.out.print("Change the prices on the rooms:\n\"1\" Change one bed room.\n\"2\" Change double bed room.\n\"3\" Change suit.\nEnter\t:\t");
+       int answer = console.nextInt();
+       
+       switch(answer){
+         case 1 : 
+            System.out.println("Enter new price for the room.");
+            setPricePerNight(console.nextInt());
+            break;
+         case 2 : 
+            System.out.println("Enter new price for the room.");
+            setPricePerNight(console.nextInt());
+            break;   
+         case 3 : 
+            System.out.println("Enter new price for the room.");
+            setPricePerNight(console.nextInt());
+            break; 
+         default:
+            System.out.println("Please enter 1, 2 or 3...");   
+            changePriceForRoom();      
+      }     
+    }
     //getters
     public String getRoomID(){ return roomID; }
 
