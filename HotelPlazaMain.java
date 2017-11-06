@@ -1,17 +1,16 @@
-import java.awt.*;
+//import java.awt.*;
 import java.io.*;
 import java.util.*;
 
 public class HotelPlazaMain {
    public static void main(String[] args)throws Exception{ 
-      Guest[] guest = new Guest[8];
-      Room[] room = new Room[6];
-      loadFile("roomList.txt", room);
+      Room[] room = new Room[6]; 
+      loadFile("roomList.txt", room); //loads the file. but it duplicates every time you start the program over
       
       showMenu(room);
             
-      
    }
+   
    public static void addRoom(Room[] room)throws Exception{
       Scanner console = new Scanner(System.in);
       
@@ -30,31 +29,33 @@ public class HotelPlazaMain {
        
    }
    public static void loadFile(String fileName,Room[] room)throws Exception{
-      Scanner read = new Scanner(new File(fileName));
-      int count = 0;
-      while(read.hasNextLine()){
-         Scanner readLine = new Scanner(read.nextLine());
-         room[count] = new Room(readLine.nextInt(),readLine.nextInt(),readLine.nextBoolean(),readLine.nextDouble(),readLine.nextInt());                  
-      System.out.println(count);
-      count++;
+      Scanner read = new Scanner(new File(fileName)); //scans the file 
+      int count = 0; //initialze variable
+      while(read.hasNextLine()){ //while it has a line
+         Scanner readLine = new Scanner(read.nextLine()); //new scanner that scans the current line
+         //scans for different tokens
+         room[count] = new Room(readLine.nextInt(),readLine.nextInt(),readLine.nextBoolean(),
+                              readLine.nextDouble(),readLine.nextInt());                  
+      count++; //increment
       }
    }
    public static int roomIndex(Room[] room){
       for(int i = 0; i < room.length; i++){
-         if(room[i] == null){
+         if(room[i] == null){ // if the array space don't have anyt info, then it returns current i
             return i;
          }
       }
       return -1; //if not found
    }
+   //update roomID
    public static int roomIDUpdate(Room[] room){
-      int count = 0; //starting room ID
-      
-         if(roomIndex(room)>1){ 
-            count = room[roomIndex(room)-1].getRoomID(); //gets last place to count  
-         }
-         
+      int count = 0; // initialize variable
+      for(int i = 0; i < room.length; i++){ //for loop on the arrays length (6)
       count++; //increment room ID  
+         if(room[i] == null){ //when the space is null it will return the current count it has 
+            return count;   
+         }
+      }
       return count;
    }
    public static void saveRoom(Room[]room)throws FileNotFoundException{
@@ -69,12 +70,10 @@ public class HotelPlazaMain {
    }
    
    public static int showMenu(Room[]room)throws Exception{
-      //int menuItem;
       Scanner console = new Scanner(System.in);
       Staff staff = new Staff();
       Guest guest = new Guest();
       Booking booking = new Booking();
-    //  Room room = new Room();
       //Scanner staffList = new Scanner (new File("StaffList.txt")).useDelimiter(",");
       int menuItem = -1;
       while (menuItem != 0){
@@ -82,7 +81,7 @@ public class HotelPlazaMain {
          menuItem = console.nextInt();
          
          switch (menuItem){
-            case 1: addRoom(room); break; //same as case 6
+            case 1: addRoom(room); break;
             case 2: guest.createNewGuest(console); break;
             case 3: guest.readGuestList(); break;
             case 4: staff.createNewStaff(console); break;
@@ -113,8 +112,8 @@ public class HotelPlazaMain {
         System.out.println("8. Change Guest");
         System.out.println("9. Change Staff");
         System.out.println("10. Extend Booking");
-        System.out.println("11. See beds avaliable");
-        System.out.println("12. Print Receipt");
+        System.out.println("11. Print Receipt");
+        System.out.println("12. Print Rooms");
         System.out.println("0. Exit");
     }
 

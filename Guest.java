@@ -2,45 +2,55 @@ import java.util.*;
 import java.io.*;
 
 class Guest{
-   private int guestID;
+   //prvate fields
+   private int guestID = 1; //starting ID
    private String firstName;
    private String lastName;
-   private String adressRoad;
-   private int adressNumber;
+   private String addressRoad;
+   private int addressNumber;
    private int phoneNumber;
    
-   public Guest(){
-   }
+   public Guest(){} //null constructor
    
-   public Guest(int guestID, String firstName, String lastName, String adressRoad, int adressNumber, int phoneNumber){
+   //constructor that accepts parameters
+   public Guest(int guestID, String firstName, String lastName, String addressRoad, int addressNumber, int phoneNumber){
       this.guestID = guestID;
       this.firstName = firstName;
       this.lastName = lastName;
-      this.adressRoad = adressRoad;
-      this.adressNumber = adressNumber;
+      this.addressRoad = addressRoad;
+      this.addressNumber = addressNumber;
       this.phoneNumber = phoneNumber;
    }
    public void saveFile(String fileName)throws Exception{
       PrintStream outputToFile = new PrintStream(new FileOutputStream(fileName, true));
-      outputToFile.print(toString() + "\n\n");
+      outputToFile.print(toString() + "\n");
    }
    public String toString(){
-      return guestID + " " + firstName + " " + lastName + " " + adressRoad + " " + adressNumber + " " + phoneNumber;
+      return guestID + " " + firstName + " " + lastName + " " + addressRoad + " " + addressNumber + " " + phoneNumber;
    }
    public void createNewGuest(Scanner console)throws Exception{
-      System.out.println("Pick a new guest ID:");
-      guestID = console.nextInt();
+      guestid(); //calls a method that sees what ID comes next
       System.out.println("Enter firstname of guest:");
-      firstName = console.next();
+      this.firstName = console.next();
       System.out.println("Enter lastname of guest:");
-      lastName = console.next();
-      System.out.println("Enter adress (road name) of guest:");
-      adressRoad = console.next();
-      System.out.println("Enter adress (road number) of guest:");
-      adressNumber = console.nextInt();
+      this.lastName = console.next();
+      System.out.println("Enter address (road name) of guest:");
+      this.addressRoad = console.next();
+      System.out.println("Enter address (road number) of guest:");
+      this.addressNumber = console.nextInt();
       System.out.println("Enter phonenumber of guest:");
-      phoneNumber = console.nextInt();
+      this.phoneNumber = console.nextInt();
       saveFile("GuestList.txt");
+   }
+   //counts what guest ID is next 
+   public int guestid()throws Exception{
+      Scanner read = new Scanner(new File("GuestList.txt")); //read from file
+      
+      while(read.hasNextLine()){ //it has line
+         this.guestID++; //increment this.guestID
+         if (read.nextLine() == null) break; //to avoid infinity loop
+      } 
+      return this.guestID; //return the outcome
    }
     public void readGuestList()throws Exception{
       int n = 1;
@@ -69,42 +79,36 @@ class Guest{
          guestID = guestList.nextInt();
          firstName = guestList.next();
          lastName = guestList.next();
-         adressRoad = guestList.next();
-         adressNumber = guestList.nextInt();
+         addressRoad = guestList.next();
+         addressNumber = guestList.nextInt();
          phoneNumber = guestList.nextInt();
          System.out.println(toString());
       }
    }
    
-   /*public int getGuestID(){
-      return guestID;
-   }
-   public String getFirstName(){
-      return firstName;
-   }
-   public String getLastName(){
-      return lastName;
-   }
-   public String getAdress(){
-      return adress;
-   }
-   public int getPhoneNumber(){
-      return phoneNumber;
-   }
-   public void setGuestID(int newGuestID){
-   guestID = newGuestID;
-   }
-   public void setFirstName(String newFirstName){
-   firstName = newFirstName;
-   }
-   public void setLastName(String newLastName){
-   lastName = newLastName;
-   }
-   public void setAdress(String newAdress){
-   adress = newAdress;
-   }
-   public void setPhoneNumber(int newPhoneNumber){
-   phoneNumber = newPhoneNumber;
-   }*/
+   //getters
+   public int getGuestID(){ return guestID; }
    
+   public String getFirstName(){ return firstName; }
+   
+   public String getLastName(){ return lastName; }
+   
+   public String getAddressRoad(){ return this.addressRoad; }
+   
+   public int getAddressNumber(){ return this.addressNumber; }
+   
+   public int getPhoneNumber(){ return phoneNumber; }
+   
+   //setters
+   public void setGuestID(int guestID){ this.guestID = guestID; }
+   
+   public void setFirstName(String firstName){ this.firstName = firstName; }
+   
+   public void setLastName(String lastName){ this.lastName = lastName; }
+   
+   public void setAddressRoad(String addressRoad){ this.addressRoad = addressRoad; }
+   
+   public void setAddressNumber(int addressNumber){ this.addressNumber = addressNumber; }
+   
+   public void setPhoneNumber(int newPhoneNumber){ this.phoneNumber = newPhoneNumber; }
 }

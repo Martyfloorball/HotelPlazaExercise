@@ -26,7 +26,7 @@ public class Room {
     }
     
     public void saveToFile(String fileName)throws FileNotFoundException{
-        PrintStream outputToFile = new PrintStream(new FileOutputStream(fileName, true)); //tilføjer uden at slette
+        PrintStream outputToFile = new PrintStream(new FileOutputStream(fileName, true)); 
         outputToFile.printf("%d %d %b %.2f %d\n",roomID, numberOfBeds, internetAccess, pricePerNight, floor);
     }
     
@@ -208,7 +208,7 @@ public class Room {
 
     public boolean getInternetAccess(){ return internetAccess; }
 
-    public double getPricePerNight(){ return pricePerNight; }
+    public double getPricePerNight(){ return 200.00; }
 
     public int getFloor(){ return floor; }
 

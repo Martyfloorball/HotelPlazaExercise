@@ -27,21 +27,15 @@ class Staff{
       PrintStream outputToFile = new PrintStream(new FileOutputStream(fileName, true));
       outputToFile.print(toString() + "\n");
    }
-   //getters
-   public int getVacation(){ return 5; } 
-   
-   public double getSalary(){ return 250000; } 
-   
-   public int getWorkingHours(){ return 37; }
-   
+      
    public String toString(){
       return staffID+" "+title+" "+firstName+" "+lastName+" "+title+" "+phoneNumber+" "
                                                             +salary+" "+vacation+" "+workingHours; 
    }
    
    public void createNewStaff(Scanner console)throws Exception{
-      System.out.println("Pick a new staff ID number:");
-      staffID = console.nextInt(); //staff.setStaffID(console.nextInt());        set new id 
+      //set staffID
+      updateStaffID();
       
       //pick a title
       chooseTitle(console);
@@ -59,6 +53,19 @@ class Staff{
       saveFile("StaffList.txt"); 
 
     }
+    public int updateStaffID()throws Exception{
+      Scanner read = new Scanner(new File("StaffList.txt")); //read from file
+      while(read.hasNextLine()){ //it has line
+         this.staffID++; //increment this.staffID
+         if (read.nextLine() == null) break; //to avoid infinity loop
+      } 
+      return this.staffID; //return the outcome
+    }
+   
+    /*
+    Lets the user choose what title he has.
+    Then it initializes to value to the variable "title".
+    */
     public String chooseTitle(Scanner console){
       System.out.print("Pick a title: \n1 = Director.\n2 = Accountant.\n3 = Maintenance.\n4 = Receptionist.\nEnter\t:\t");
       title = console.next();
@@ -77,18 +84,18 @@ class Staff{
             break;
          default:
             System.out.println("You didn't choose a title.");
-            chooseTitle(console);   
+            chooseTitle(console);//loop menu   
       }
       System.out.println(); //skip line
       return title;
     }
     //See what title he got and then save info to the list (salary, vacation and working hours)
     public void seeTitle(String title){
-      if(title.toLowerCase().equals("director")){
-         Director d = new Director();
-         salary = d.getSalary(); 
-         vacation = d.getVacation();
-         workingHours = d.getWorkingHours();
+      if(title.toLowerCase().equals("director")){ //takes the title and convert to all char to lower cases and sees if it's a match 
+         Director d = new Director(); //initialize object 
+         salary = d.getSalary(); //get salary
+         vacation = d.getVacation(); //get vacation days
+         workingHours = d.getWorkingHours(); //get hours he will be working
       }else if (title.toLowerCase().equals("accountant")){
          Accountant a = new Accountant();
          salary = a.getSalary(); 
@@ -106,11 +113,11 @@ class Staff{
          workingHours = r.getWorkingHours();
       }
     }
-   
+    //print the staff list
     public void printStaffList()throws Exception{
       Scanner staffList = new Scanner (new File("StaffList.txt"));
       while (staffList.hasNextLine()){
-         System.out.println(staffList.nextLine());
+         System.out.println(staffList.nextLine()); //print the line
       }
       System.out.println(); //skip line
     }
@@ -194,4 +201,13 @@ class Staff{
    }    
    return 0;
 }  
+   //getters
+   public int getVacation(){ return 5; } 
+   
+   public double getSalary(){ return 250000; } 
+   
+   public int getWorkingHours(){ return 37; }
+   
+   //setters
+   
 }
