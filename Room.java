@@ -2,27 +2,42 @@ import java.io.*;
 import java.util.*;
 
 public class Room {
-    private String roomID;
-    private int numberOfBeds = 6; 
+    private int roomID;
+    private int numberOfBeds; 
     private boolean internetAccess;
     private double pricePerNight;
     private int floor;
     private double sum;
     String bed;
 
-
-    /*public String toString(){
-        return roomID + " " + numberOfBeds + " " + internetAccess + " " + pricePerNight + " " + floor + " " + sum + " " + bed;
-    }*/
+    public Room(){} //null constructor
     
-    public String readRoomList(int floor)throws Exception{
+    //constructor with parameters
+    public Room(int roomID, int numberOfBeds, boolean internetAccess, double pricePerNight, int floor){
+      this.roomID = roomID;
+      this.numberOfBeds = numberOfBeds;
+      this.internetAccess = internetAccess; 
+      this.pricePerNight = pricePerNight;
+      this.floor = floor;
+    }
+      
+    public String toString(){
+        return String.format("Room ID: %d\tNumber of beds: %d\tInternet access: %b\tPrice per night: %.2f\tFloor: %d",roomID, numberOfBeds, internetAccess, pricePerNight, floor);
+    }
+    
+    public void saveToFile(String fileName)throws FileNotFoundException{
+        PrintStream outputToFile = new PrintStream(new FileOutputStream(fileName, true)); //tilføjer uden at slette
+        outputToFile.printf("%d %d %b %.2f %d\n",roomID, numberOfBeds, internetAccess, pricePerNight, floor);
+    }
+    
+    public int readRoomList(int floor)throws Exception{
         Scanner roomList = new Scanner(new File("roomList.txt"));
-        String[] roomIDEntry = new String[6];
+        int[] roomIDEntry = new int[6];
         
         //save line in array
         for(int i = 0; i < 6; i++){ 
             if(roomList.hasNextLine()){ //every time it has a line it saves that line in the array
-                roomIDEntry[i] = roomList.nextLine();
+                roomIDEntry[i] = roomList.nextInt();
             }
         }
         //sets roomID 
@@ -57,7 +72,7 @@ public class Room {
                return roomIDEntry[5];
             }
         }
-        return "";
+        return -1; //if it didn't find anything in list
     }
     
     public String internetCode(int floor) throws Exception {
@@ -187,7 +202,7 @@ public class Room {
       }*/     
     }
     //getters
-    public String getRoomID(){ return roomID; }
+    public int getRoomID(){ return roomID; }
 
     public int getNumberOfBeds(){ return numberOfBeds; }
 
@@ -201,7 +216,7 @@ public class Room {
 
 
     //setters
-    public void setRoomID(String roomID){ this.roomID = roomID; }
+    public void setRoomID(int roomID){ this.roomID = roomID; }
 
     public void setNumberOfBeds(int numberOfBeds){ this.numberOfBeds = 6 - numberOfBeds; } 
 

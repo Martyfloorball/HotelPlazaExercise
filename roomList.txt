@@ -1,6 +1,1 @@
-1a single
-1b single 
-2a double
-2b double
-3a suit
-3b suit
+1 1 true 200.00 3
