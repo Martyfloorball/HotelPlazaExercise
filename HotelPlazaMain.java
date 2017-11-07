@@ -118,6 +118,4 @@ public class HotelPlazaMain {
         System.out.println("12. Print Rooms");
         System.out.println("0. Exit");
     }
-
-   
 }

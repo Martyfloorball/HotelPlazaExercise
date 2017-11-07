@@ -116,6 +116,7 @@ class Staff{
          workingHours = r.getWorkingHours();
       }
     }
+    
     //print the staff list
     public void printStaffList()throws Exception{
       Scanner staffList = new Scanner (new File("StaffList.txt"));
@@ -124,81 +125,106 @@ class Staff{
       }
       System.out.println(); //skip line
     }
+    
+    /*
+    This method reads the pernonelle from the file, and lets the user change
+    whatever they whant changed. 
+    The emphasis is on the "title" because when the title has been chosen
+    it will automatically update salary, vacation weeks and working hours
+    for the specific title. 
+    */
     public int showStaffMenu() throws Exception{
       Scanner consoleStaff = new Scanner(System.in);
-      String allStaff[][] = new String[4][8];
-      int staffMenuItem = -1;
-      String Item = null;
-      Scanner fileStaffList = new Scanner(new File("StaffList.txt"));
-      while (fileStaffList.hasNext()){
-         for (int i = 0; i < 4; i++){
-            for (int j = 0; j < 8; j++){
-               Item = fileStaffList.next();
-                  allStaff[i][j] = Item;
-                  //TEST: System.out.println(Item);
+      String allStaff[][] = new String[4][8]; //initilize a two dimentional array 
+      int staffMenuItem = -1; //a dummy to loop the menu until the sentinal is chosen
+      String Item = null; //initialize a String variable
+      Scanner fileStaffList = new Scanner(new File("StaffList.txt")); //scan file
+      while (fileStaffList.hasNext()){ //has a line
+         for (int i = 0; i < 4; i++){ //there are 4 horzontal lines in array
+            for (int j = 0; j < 8; j++){ // there are 8 columns in array 
+               Item = fileStaffList.next(); 
+                  allStaff[i][j] = Item; //puts token in placeholder in array
             } 
          }
       }
-      for (int i = 0; i < 4; i++){
-         for (int j = 0; j < 8; j++){
-            //TEST:System.out.println(allStaff[i][j]);
-      }
-   }
-   String staffid = new String();
-   int i = 0;
-   System.out.println("Enter staff ID to change");
-   staffid = consoleStaff.next();
-   while (staffMenuItem != 0){
-      System.out.println("1. Change title:");
-      System.out.println("2. Change firstname:");
-      System.out.println("3. Change lastname:");
-      System.out.println("4. Change phone number:");
-      System.out.println("0. Return to main menu");
-   
-   for (i = 0; i < 4; i++){
+      String staffid = new String(); //make new String object
+      int i = 0;
+      System.out.println("Enter staff ID to change");
+      staffid = consoleStaff.next();
+      while (staffMenuItem != 0){
+         System.out.println("1. Change title:");
+         System.out.println("2. Change firstname:");
+         System.out.println("3. Change lastname:");
+         System.out.println("4. Change phone number:");
+         System.out.println("0. Return to main menu");
+         
+         //for loop check to see if staffID is the same as someone in file 
+         for (i = 0; i < 4; i++){
             String tmpstaffid = allStaff[i][0];
-         // TEST: System.out.print(tmpstaffid);
             if (staffid.equals(tmpstaffid)){
                break;
             }
          }
-         fileStaffList.close();
-          // TEST: System.out.print(i);
-         staffMenuItem = consoleStaff.nextInt();
-         switch(staffMenuItem){
-            case 1:
-               Director d = new Director();
+         fileStaffList.close(); //always close. If not the it will be locked for other process (it cannot be invoked)  
+         staffMenuItem = consoleStaff.nextInt(); //make referrence to variable 
+         switch(staffMenuItem){//
+            case 1:              
+               System.out.println("Enter new title:");              
+               allStaff[i][1] = chooseTitle(consoleStaff); //let user choose what title
                
-               System.out.println("Enter new title:");
-               //title = consoleStaff.next();
-               allStaff[i][1] = chooseTitle(consoleStaff);
-               seeTitle(title);
+               /*
+               get values and automatically place them in specific places in array
+               */
                
                if(title.toLowerCase().equals("director")){ //takes the title and convert to all char to lower cases and sees if it's a match 
                   Director d = new Director(); //initialize object 
-                  double salary = d.getSalary(); //get salary
-                  int vacation = d.getVacation(); //get vacation days
-                  int workingHours = d.getWorkingHours(); //get hours he will be working
+                  this.salary = d.getSalary(); 
+                  String sal = String.valueOf(this.salary); ////Returns the string representation of the primitive argument. 
+                  allStaff[i][5] = sal;//replace placeholder with new information                  
+                  this.vacation = d.getVacation(); 
+                  String vaca = String.valueOf(this.vacation);
+                  allStaff[i][6] = vaca;
+                  this.workingHours = d.getWorkingHours(); 
+                  String workH = String.valueOf(this.workingHours);
+                  allStaff[i][7] = workH;
+                  
                }else if (title.toLowerCase().equals("accountant")){
                   Accountant a = new Accountant();
-                  double salary = a.getSalary(); 
-                  int vacation = a.getVacation(); 
-                  int workingHours = a.getWorkingHours();       
+                  this.salary = a.getSalary();
+                  String sal = String.valueOf(this.salary);
+                  allStaff[i][5] = sal; 
+                  this.vacation = a.getVacation();
+                  String vaca = String.valueOf(this.vacation);
+                  allStaff[i][6] = vaca;                   
+                  int workingHours = a.getWorkingHours();     
+                  String workH = String.valueOf(this.workingHours);
+                  allStaff[i][7] = workH; 
+                   
                }else if (title.toLowerCase().equals("maintenance")){
                   Maintenance m = new Maintenance();
-                  double salary = m.getSalary();
-                  allStaff[i][5] = salary;
-                  int vacation = m.getVacation();
-                  int workingHours = m.getWorkingHours();
-               }else if (title.toLowerCase().equals("receptionist")){
-                  Receptionist r = new Receptionist();
-                  double salary = r.getSalary();
+                  this.salary = m.getSalary();
                   String sal = String.valueOf(this.salary);
                   allStaff[i][5] = sal;
-                  int vacation = r.getVacation();
-                  int workingHours = r.getWorkingHours(); 
+                  this.vacation = m.getVacation();
+                  String vaca = String.valueOf(this.vacation);
+                  allStaff[i][6] = vaca;                  
+                  this.workingHours = m.getWorkingHours();
+                  String workH = String.valueOf(this.workingHours);
+                  allStaff[i][7] = workH;
                   
-            break;
+               }else if (title.toLowerCase().equals("receptionist")){
+                  Receptionist r = new Receptionist();
+                  this.salary = r.getSalary();
+                  String sal = String.valueOf(this.salary);
+                  allStaff[i][5] = sal;
+                  this.vacation = r.getVacation();
+                  String vaca = String.valueOf(this.vacation);
+                  allStaff[i][6] = vaca;
+                  this.workingHours = r.getWorkingHours(); 
+                  String workH = String.valueOf(this.workingHours);
+                  allStaff[i][7] = workH;
+               }                     
+            break; //break the case so it doesn't run case 2 with it 
             
             case 2:
                System.out.println("Enter new firstname:");
@@ -215,29 +241,23 @@ class Staff{
             case 4:
                System.out.println("Enter new phone number:");
                this.phoneNumber = consoleStaff.nextInt(); 
-               String phoneNum = String.valueOf(this.phoneNumber); //returns the relevant Number Object holding the value of the argument passed. 
+               String phoneNum = String.valueOf(this.phoneNumber); //Returns the string representation of the primitive argument. 
                allStaff[i][4] = phoneNum;
             break;
-            
-            /*case 4:
-               System.out.println("Enter new salary:");
-               double salary = consoleStaff.nextDouble();
-               String newsalary = String.valueOf(salary);
-               allStaff[i][5] = newsalary;
-            break;*/
-            
+       
             case 0:
                break;
                
             default: System.out.println("Invalid entry, please enter number of the menu you want to access");
-   }
-   PrintStream addChange = new PrintStream(new File("StaffList.txt"));
-   for (i = 0; i < 4; i++){
-      addChange.println(allStaff[i][0] + " " + allStaff[i][1] + " " + allStaff[i][2] + " " + allStaff[i][3] + " " + allStaff[i][4] + " " + allStaff[i][5]+ " " + allStaff[i][6]+ " " + allStaff[i][7]);
-   }
-   }    
-   return 0;
-}  
+      }
+         //override the placeholder
+         PrintStream addChange = new PrintStream(new File("StaffList.txt"));
+         for (i = 0; i < 4; i++){
+            addChange.println(allStaff[i][0] + " " + allStaff[i][1] + " " + allStaff[i][2] + " " + allStaff[i][3] + " " + allStaff[i][4] + " " + allStaff[i][5]+ " " + allStaff[i][6]+ " " + allStaff[i][7]);
+         }
+      }    
+      return 0;
+   }  
    //getters
    public int getStaffID() { return staffID; }
    
