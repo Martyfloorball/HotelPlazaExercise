@@ -139,7 +139,7 @@ class Staff{
       int staffMenuItem = -1; //a dummy to loop the menu until the sentinal is chosen
       String Item = null; //initialize a String variable
       Scanner fileStaffList = new Scanner(new File("StaffList.txt")); //scan file
-      while (fileStaffList.hasNext()){ //has a line
+      while (fileStaffList.hasNext()){ //has a token
          for (int i = 0; i < 4; i++){ //there are 4 horzontal lines in array
             for (int j = 0; j < 8; j++){ // there are 8 columns in array 
                Item = fileStaffList.next(); 

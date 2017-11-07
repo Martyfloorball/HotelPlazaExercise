@@ -1,11 +1,10 @@
-//import java.awt.*;
 import java.io.*;
 import java.util.*;
 
 public class HotelPlazaMain {
    public static void main(String[] args)throws Exception{ 
       Room[] room = new Room[6]; 
-      loadFile("roomList.txt", room); 
+      loadFile("roomList.txt", room); //load file 
       
       showMenu(room);
             
@@ -72,12 +71,12 @@ public class HotelPlazaMain {
    
    public static int showMenu(Room[]room)throws Exception{
       Scanner console = new Scanner(System.in);
+      //initilize objects
       Staff staff = new Staff();
       Guest guest = new Guest();
       Booking booking = new Booking();
       Room room1 = new Room();
-      //Scanner staffList = new Scanner (new File("StaffList.txt")).useDelimiter(",");
-      int menuItem = -1;
+      int menuItem = -1; //dummy to keep looping until sentinel is entered
       while (menuItem != 0){
          menu();//this is a print method
          menuItem = console.nextInt();
