@@ -11,8 +11,10 @@ class Staff{
    protected int vacation;
    protected int workingHours;
    
+   //null constructor
    public Staff(){}
    
+   //staff constructor with parameters
    public Staff(int staffID, String title, String firstName, String lastName, int phoneNumber, double salary, int vacation, int workingHours){
       this.staffID = staffID;
       this.title = title;
@@ -31,7 +33,7 @@ class Staff{
       
    public String toString(){
       return staffID+" "+title+" "+firstName+" "+lastName+" "+title+" "+phoneNumber+" "
-                                                            +salary+" "+vacation+" "+workingHours; 
+                                                   +salary+" "+vacation+" "+workingHours; 
    }
    
    public void createNewStaff(Scanner console)throws Exception{
@@ -203,6 +205,16 @@ class Staff{
    return 0;
 }  
    //getters
+   public int getStaffID() { return staffID; }
+   
+   public String getTitle() { return title; }
+   
+   public String getFirstName() { return firstName; }
+   
+   public String getLastName() { return lastName; }
+   
+   public int getPhoneNumber() { return phoneNumber; }
+   
    public int getVacation(){ return 5; } 
    
    public double getSalary(){ return 250000; } 
@@ -210,5 +222,20 @@ class Staff{
    public int getWorkingHours(){ return 37; }
    
    //setters
+   public void setStaffID(int staffID){ this.staffID = staffID; }
    
+   public void setTitle(String title){ this.title = title; }
+   
+   public void setFirstName(String firstName){ this.firstName = firstName; }
+   
+   public void setLastName(String lastName){ this.lastName = lastName; }
+   
+   public void setPhoneNumber(int phoneNumber){ this.phoneNumber = phoneNumber; }
+   
+   public void setSalary(double salary){ this.salary = salary; }
+   
+   public void setVacation(int vacation){ this.vacation = vacation; }
+   
+   public void setWorkingHours(int workingHours){ this.workingHours = workingHours; }
+    
 }
