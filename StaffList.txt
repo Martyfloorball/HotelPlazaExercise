@@ -1,3 +1,4 @@
-1 Accountant Martin Jensen Accountant 31465546 450000.0 6 37
-2 Receptionist Marianne hansen Receptionist 86888899 250000.0 6 42
-3 Director Hans Hansen Director 63636363 600000.0 5 54
+1 Receptionist Martin Hansolo 31465546 450000.0 6 37
+2 Receptionist Marianne hansen 86888899 250000.0 6 42
+3 Director Hans Hansen 63636363 600000.0 5 54
+4 Director Mo Ham 78787878 600000.0 5 54

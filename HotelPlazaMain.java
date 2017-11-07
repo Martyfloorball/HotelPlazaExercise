@@ -91,10 +91,10 @@ public class HotelPlazaMain {
             case 6: booking.createBooking(); break;
             case 7: room1.changePriceForRoom(); break; //set price per night
             //case 8: changeGuest(); break;
-            //case 9: changeStaff(); break;
+            case 9: staff.showStaffMenu(); break;
             //case 10: extendBooking(); break;
-            //case 11: printBill(); break; //booking "addRoom" has receipt
-            case 12: printRoomList(room);
+            //case 11: printBill(); break; //create room ha bill?
+            case 12: printRoomList(room); break;
             case 0: System.out.println("Goodbye"); break;
             default : System.out.println("Invalid, please type the number of the menu you wish to access");
          }

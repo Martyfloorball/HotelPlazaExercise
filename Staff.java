@@ -32,7 +32,7 @@ class Staff{
    }
       
    public String toString(){
-      return staffID+" "+title+" "+firstName+" "+lastName+" "+title+" "+phoneNumber+" "
+      return staffID+" "+title+" "+firstName+" "+lastName+" "+phoneNumber+" "
                                                    +salary+" "+vacation+" "+workingHours; 
    }
    
@@ -126,22 +126,22 @@ class Staff{
     }
     public int showStaffMenu() throws Exception{
       Scanner consoleStaff = new Scanner(System.in);
-      String allStaff[][] = new String[4][6];
+      String allStaff[][] = new String[4][8];
       int staffMenuItem = -1;
-      String Item;
+      String Item = null;
       Scanner fileStaffList = new Scanner(new File("StaffList.txt"));
       while (fileStaffList.hasNext()){
          for (int i = 0; i < 4; i++){
-            for (int j = 0; j < 6; j++){
+            for (int j = 0; j < 8; j++){
                Item = fileStaffList.next();
                   allStaff[i][j] = Item;
                   //TEST: System.out.println(Item);
             } 
          }
       }
-   for (int i = 0; i < 4; i++){
-      for (int j = 0; j < 6; j++){
-         //TEST:System.out.println(allStaff[i][j]);
+      for (int i = 0; i < 4; i++){
+         for (int j = 0; j < 8; j++){
+            //TEST:System.out.println(allStaff[i][j]);
       }
    }
    String staffid = new String();
@@ -150,9 +150,9 @@ class Staff{
    staffid = consoleStaff.next();
    while (staffMenuItem != 0){
       System.out.println("1. Change title:");
-      System.out.println("2. Change lastname:");
-      System.out.println("3. Change phone number:");
-      System.out.println("4. Change salary:");
+      System.out.println("2. Change firstname:");
+      System.out.println("3. Change lastname:");
+      System.out.println("4. Change phone number:");
       System.out.println("0. Return to main menu");
    
    for (i = 0; i < 4; i++){
@@ -167,30 +167,64 @@ class Staff{
          staffMenuItem = consoleStaff.nextInt();
          switch(staffMenuItem){
             case 1:
+               Director d = new Director();
+               
                System.out.println("Enter new title:");
-               title = consoleStaff.next();
-               allStaff[i][1] = title;
+               //title = consoleStaff.next();
+               allStaff[i][1] = chooseTitle(consoleStaff);
+               seeTitle(title);
+               
+               if(title.toLowerCase().equals("director")){ //takes the title and convert to all char to lower cases and sees if it's a match 
+                  Director d = new Director(); //initialize object 
+                  double salary = d.getSalary(); //get salary
+                  int vacation = d.getVacation(); //get vacation days
+                  int workingHours = d.getWorkingHours(); //get hours he will be working
+               }else if (title.toLowerCase().equals("accountant")){
+                  Accountant a = new Accountant();
+                  double salary = a.getSalary(); 
+                  int vacation = a.getVacation(); 
+                  int workingHours = a.getWorkingHours();       
+               }else if (title.toLowerCase().equals("maintenance")){
+                  Maintenance m = new Maintenance();
+                  double salary = m.getSalary();
+                  allStaff[i][5] = salary;
+                  int vacation = m.getVacation();
+                  int workingHours = m.getWorkingHours();
+               }else if (title.toLowerCase().equals("receptionist")){
+                  Receptionist r = new Receptionist();
+                  double salary = r.getSalary();
+                  String sal = String.valueOf(this.salary);
+                  allStaff[i][5] = sal;
+                  int vacation = r.getVacation();
+                  int workingHours = r.getWorkingHours(); 
+                  
             break;
             
             case 2:
-               System.out.println("Enter new lastname:");
-               lastName = consoleStaff.next();
-               allStaff[i][3] = lastName;
+               System.out.println("Enter new firstname:");
+               this.firstName = consoleStaff.next();
+               allStaff[i][2] = this.firstName;
             break;
             
             case 3:
-               System.out.println("Enter new phone number:");
-               int phoneNumber = consoleStaff.nextInt();
-               String phoneNum = String.valueOf(phoneNumber);
-               allStaff[i][4] = phoneNum;
+               System.out.println("Enter new lastname:");
+               this.lastName = consoleStaff.next();
+               allStaff[i][3] = this.lastName;
             break;
             
             case 4:
+               System.out.println("Enter new phone number:");
+               this.phoneNumber = consoleStaff.nextInt(); 
+               String phoneNum = String.valueOf(this.phoneNumber); //returns the relevant Number Object holding the value of the argument passed. 
+               allStaff[i][4] = phoneNum;
+            break;
+            
+            /*case 4:
                System.out.println("Enter new salary:");
                double salary = consoleStaff.nextDouble();
                String newsalary = String.valueOf(salary);
                allStaff[i][5] = newsalary;
-            break;
+            break;*/
             
             case 0:
                break;
@@ -199,7 +233,7 @@ class Staff{
    }
    PrintStream addChange = new PrintStream(new File("StaffList.txt"));
    for (i = 0; i < 4; i++){
-      addChange.println(allStaff[i][0] + " " + allStaff[i][1] + " " + allStaff[i][2] + " " + allStaff[i][3] + " " + allStaff[i][4] + " " + allStaff[i][5]);
+      addChange.println(allStaff[i][0] + " " + allStaff[i][1] + " " + allStaff[i][2] + " " + allStaff[i][3] + " " + allStaff[i][4] + " " + allStaff[i][5]+ " " + allStaff[i][6]+ " " + allStaff[i][7]);
    }
    }    
    return 0;
