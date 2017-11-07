@@ -180,27 +180,9 @@ public class Room {
        Scanner console = new Scanner(System.in);
        System.out.println("Enter new price for the room.");
        setPricePerNight(console.nextDouble());
-       //System.out.print("Change the prices on the rooms:\n\"1\" Change one bed room.\n\"2\" Change double bed room.\n\"3\" Change suit.\nEnter\t:\t");       
-       /*int answer = console.nextInt();
-       
-       switch(answer){
-         case 1 : 
-            System.out.println("Enter new price for the room.");
-            setPricePerNight(console.nextInt());
-            break;
-         case 2 : 
-            System.out.println("Enter new price for the room.");
-            setPricePerNight(console.nextInt());
-            break;   
-         case 3 : 
-            System.out.println("Enter new price for the room.");
-            setPricePerNight(console.nextInt());
-            break; 
-         default:
-            System.out.println("Please enter 1, 2 or 3...");   
-            changePriceForRoom();    
-      }*/     
+       System.out.println("The price is now: " + getPricePerNight()+"$");
     }
+    
     //getters
     public int getRoomID(){ return roomID; }
 
@@ -208,7 +190,7 @@ public class Room {
 
     public boolean getInternetAccess(){ return internetAccess; }
 
-    public double getPricePerNight(){ return 200.00; }
+    public double getPricePerNight(){ return pricePerNight; }
 
     public int getFloor(){ return floor; }
 

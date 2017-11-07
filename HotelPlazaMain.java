@@ -75,6 +75,7 @@ public class HotelPlazaMain {
       Staff staff = new Staff();
       Guest guest = new Guest();
       Booking booking = new Booking();
+      Room room1 = new Room();
       //Scanner staffList = new Scanner (new File("StaffList.txt")).useDelimiter(",");
       int menuItem = -1;
       while (menuItem != 0){
@@ -88,7 +89,7 @@ public class HotelPlazaMain {
             case 4: staff.createNewStaff(console); break;
             case 5: staff.printStaffList(); break;
             case 6: booking.createBooking(); break;
-            //case 7: room.changePriceForRoom(); break; //set price per night for each room
+            case 7: room1.changePriceForRoom(); break; //set price per night
             //case 8: changeGuest(); break;
             //case 9: changeStaff(); break;
             //case 10: extendBooking(); break;
