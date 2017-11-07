@@ -89,7 +89,7 @@ public class HotelPlazaMain {
             case 5: staff.printStaffList(); break;
             case 6: booking.createBooking(); break;
             case 7: room1.changePriceForRoom(); break; //set price per night
-            //case 8: changeGuest(); break;
+            case 8: guest.changeGuest(); break;
             case 9: staff.showStaffMenu(); break;
             //case 10: extendBooking(); break;
             //case 11: printBill(); break; //create room ha bill?

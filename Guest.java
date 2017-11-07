@@ -127,97 +127,60 @@ class Guest{
       }
       guestList.close();
       guestMenuItem = consoleGuest.nextInt();
-       
+      
+      switch(guestMenuItem){
+         case 1:
+            System.out.println("Enter new firstname");
+            this.firstName = consoleGuest.next();
+            allGuest[i][1] = this.firstName;
+            break;
+         
+         case 2:
+            System.out.println("Enter new lastname");
+            this.lastName = consoleGuest.next();
+            allGuest[i][2] = this.lastName;
+            break; 
+         
+         case 3:
+            System.out.println("Enter new road name");
+            this.addressRoad = consoleGuest.next();
+            allGuest[i][3] = this.addressRoad;
+            break;
+         
+         case 4:
+            System.out.println("Enter new road number:");
+            this.addressNumber = consoleGuest.nextInt();
+            String addressNum = String.valueOf(this.addressNumber); //Returns the string representation of the primitive argument. 
+            allGuest[i][4] = addressNum;
+            break;
+         
+         case 5:
+            System.out.println("Enter new phonenumber:");
+            this.phoneNumber = consoleGuest.nextInt();
+            String phoneNum = String.valueOf(this.phoneNumber); //Returns the string representation of the primitive argument. 
+            allGuest[i][5] = phoneNum;         
+            break;
+         
+         case 0: 
+            break;
+         
+         default: System.out.println("Invalid entry, please enter number of the menu you want to access");
+      }
+      //override the placeholder
+      PrintStream addChange = new PrintStream(new File("StaffList.txt"));
+      for (i = 0; i < 4; i++){
+         addChange.println(allGuest[i][0] + " " + allGuest[i][1] + " " + allGuest[i][2] +
+                        " " + allGuest[i][3] + " " + allGuest[i][4] + " " + allGuest[i][5]);
+      }     
    return 0;
    }
-   /*
-         switch(staffMenuItem){//
-            case 1:              
-               System.out.println("Enter new title:");              
-               allStaff[i][1] = chooseTitle(consoleStaff); //let user choose what title
-               
-               /*
-               get values and automatically place them in specific places in array
-               */
-               /*
-               if(title.toLowerCase().equals("director")){ //takes the title and convert to all char to lower cases and sees if it's a match 
-                  Director d = new Director(); //initialize object 
-                  this.salary = d.getSalary(); 
-                  String sal = String.valueOf(this.salary); ////Returns the string representation of the primitive argument. 
-                  allStaff[i][5] = sal;//replace placeholder with new information                  
-                  this.vacation = d.getVacation(); 
-                  String vaca = String.valueOf(this.vacation);
-                  allStaff[i][6] = vaca;
-                  this.workingHours = d.getWorkingHours(); 
-                  String workH = String.valueOf(this.workingHours);
-                  allStaff[i][7] = workH;
-                  
-               }else if (title.toLowerCase().equals("accountant")){
-                  Accountant a = new Accountant();
-                  this.salary = a.getSalary();
-                  String sal = String.valueOf(this.salary);
-                  allStaff[i][5] = sal; 
-                  this.vacation = a.getVacation();
-                  String vaca = String.valueOf(this.vacation);
-                  allStaff[i][6] = vaca;                   
-                  int workingHours = a.getWorkingHours();     
-                  String workH = String.valueOf(this.workingHours);
-                  allStaff[i][7] = workH; 
-                   
-               }else if (title.toLowerCase().equals("maintenance")){
-                  Maintenance m = new Maintenance();
-                  this.salary = m.getSalary();
-                  String sal = String.valueOf(this.salary);
-                  allStaff[i][5] = sal;
-                  this.vacation = m.getVacation();
-                  String vaca = String.valueOf(this.vacation);
-                  allStaff[i][6] = vaca;                  
-                  this.workingHours = m.getWorkingHours();
-                  String workH = String.valueOf(this.workingHours);
-                  allStaff[i][7] = workH;
-                  
-               }else if (title.toLowerCase().equals("receptionist")){
-                  Receptionist r = new Receptionist();
-                  this.salary = r.getSalary();
-                  String sal = String.valueOf(this.salary);
-                  allStaff[i][5] = sal;
-                  this.vacation = r.getVacation();
-                  String vaca = String.valueOf(this.vacation);
-                  allStaff[i][6] = vaca;
-                  this.workingHours = r.getWorkingHours(); 
-                  String workH = String.valueOf(this.workingHours);
-                  allStaff[i][7] = workH;
-               }                     
-            break; //break the case so it doesn't run case 2 with it 
-            
-            case 2:
-               System.out.println("Enter new firstname:");
-               this.firstName = consoleStaff.next();
-               allStaff[i][2] = this.firstName;
-            break;
-            
-            case 3:
-               System.out.println("Enter new lastname:");
-               this.lastName = consoleStaff.next();
-               allStaff[i][3] = this.lastName;
-            break;
-            
-            case 4:
-               System.out.println("Enter new phone number:");
-               this.phoneNumber = consoleStaff.nextInt(); 
-               String phoneNum = String.valueOf(this.phoneNumber); //Returns the string representation of the primitive argument. 
-               allStaff[i][4] = phoneNum;
-            break;
-       
-            case 0:
-               break;
-               
-            default: System.out.println("Invalid entry, please enter number of the menu you want to access");
-      }
+   /*      
+         
+   
          //override the placeholder
          PrintStream addChange = new PrintStream(new File("StaffList.txt"));
          for (i = 0; i < 4; i++){
-            addChange.println(allStaff[i][0] + " " + allStaff[i][1] + " " + allStaff[i][2] + " " + allStaff[i][3] + " " + allStaff[i][4] + " " + allStaff[i][5]+ " " + allStaff[i][6]+ " " + allStaff[i][7]);
+            addChange.println(allGuest[i][0] + " " + allGuest[i][1] + " " + allGuest[i][2] + " " + allGuest[i][3] + " " + allGuest[i][4] + " " + allGuest[i][5]+ " " + allGuest[i][6]+ " " + allGuest[i][7]);
          }
       }    
       return 0;
