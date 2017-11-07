@@ -21,6 +21,7 @@ class Guest{
       this.addressNumber = addressNumber;
       this.phoneNumber = phoneNumber;
    }
+   //print to file without overriding the file
    public void saveFile(String fileName)throws Exception{
       PrintStream outputToFile = new PrintStream(new FileOutputStream(fileName, true));
       outputToFile.print(toString() + "\n");
@@ -67,24 +68,29 @@ class Guest{
             entry[i] = read.nextLine(); //save to array
             
            if(readLine.nextInt() == readGuest){ //if match print the line
-               System.out.println(entry[i]);
+               System.out.println(entry[i]); //print the current array placeholder
             }
          }
       n++; //increment n that is used in the String array "entry"
       } 
    }
+   //prints the guests
    public void printGuestList()throws Exception{
       Scanner guestList = new Scanner (new File("GuestList.txt"));
-      while (guestList.hasNextLine()){
-         guestID = guestList.nextInt();
-         firstName = guestList.next();
-         lastName = guestList.next();
-         addressRoad = guestList.next();
-         addressNumber = guestList.nextInt();
-         phoneNumber = guestList.nextInt();
+      while (guestList.hasNextLine()){ //while the fale has next line
+         this.guestID = guestList.nextInt();
+         this.firstName = guestList.next();
+         this.lastName = guestList.next();
+         this.addressRoad = guestList.next();
+         this.addressNumber = guestList.nextInt();
+         this.phoneNumber = guestList.nextInt();
          System.out.println(toString());
       }
    }
+   
+   /*
+   changeGuest method see from staff class
+   */
    
    //getters
    public int getGuestID(){ return guestID; }

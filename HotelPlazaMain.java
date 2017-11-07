@@ -5,7 +5,7 @@ import java.util.*;
 public class HotelPlazaMain {
    public static void main(String[] args)throws Exception{ 
       Room[] room = new Room[6]; 
-      loadFile("roomList.txt", room); //loads the file. but it duplicates every time you start the program over
+      loadFile("roomList.txt", room); 
       
       showMenu(room);
             
@@ -59,8 +59,9 @@ public class HotelPlazaMain {
       return count;
    }
    public static void saveRoom(Room[]room)throws FileNotFoundException{
+      PrintStream override = new PrintStream(new File("roomList.txt")); //override file
       for(int i = 0; i < roomIndex(room); i++){ 
-         room[i].saveToFile("roomList.txt");
+         room[i].saveToFile("roomList.txt"); 
       }
    }
    public static void printRoomList(Room[]room)throws Exception{

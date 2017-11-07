@@ -23,9 +23,10 @@ class Staff{
       this.vacation = vacation;
       this.workingHours = workingHours;
    }
+   //print to file without overriding the file
    public void saveFile(String fileName)throws Exception{
       PrintStream outputToFile = new PrintStream(new FileOutputStream(fileName, true));
-      outputToFile.print(toString() + "\n");
+      outputToFile.print(toString() + "\n"); //print in the order of toString()
    }
       
    public String toString(){
