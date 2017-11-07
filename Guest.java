@@ -95,7 +95,12 @@ class Guest{
       Scanner consoleGuest = new Scanner(System.in);
       Scanner guestList = new Scanner (new File("GuestList.txt"));
       int n = 0;
-      while (guestList.hasNextLine()){ n++; } //increment
+      while(guestList.hasNextLine()){ 
+         n++; //increment
+         if (guestList.nextLine() == null){ 
+            break;
+         } 
+      } 
       String allGuest[][] = new String[n][6]; //two dimentional array
       int guestMenuItem = -1;
       String item = null;
@@ -120,10 +125,12 @@ class Guest{
          System.out.println("4. Change road number on address:");
          System.out.println("5. Change phonenumber:");
          System.out.println("0. Return to main menu:");    
-      }
-      for(i = 0; i < n; i++){
-         String tmpGuestID = allGuest[i][0];
-         if (guestid.equals(tmpGuestID)){ break; }
+      
+         for(i = 0; i < n; i++){
+            String tmpGuestID = allGuest[i][0];
+            if (guestid.equals(tmpGuestID)){ break; }
+         }
+         break;  
       }
       guestList.close();
       guestMenuItem = consoleGuest.nextInt();
@@ -164,11 +171,11 @@ class Guest{
          case 0: 
             break;
          
-         default: System.out.println("Invalid entry, please enter number of the menu you want to access");
+         default: System.out.println("Invalid entry, please enter number of the menu you want to access"); break;
       }
       //override the placeholder
       PrintStream addChange = new PrintStream(new File("StaffList.txt"));
-      for (i = 0; i < 4; i++){
+      for (i = 0; i < n; i++){
          addChange.println(allGuest[i][0] + " " + allGuest[i][1] + " " + allGuest[i][2] +
                         " " + allGuest[i][3] + " " + allGuest[i][4] + " " + allGuest[i][5]);
       }     
