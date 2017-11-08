@@ -64,7 +64,7 @@ class Guest{
    
       while (read.hasNextLine()){ //while the txt file has a line
          Scanner readLine = new Scanner(read.next()); //new scanner that reads the first tokens of the "read" Scanner
-         for (int i = 0; i < entry.length; i++){ //loop the lenght of entry
+         for (int i = 0; i < entry.length; i++){ //loop the length of entry
             entry[i] = read.nextLine(); //save to array
             
            if(readLine.nextInt() == readGuest){ //if match print the line
@@ -100,15 +100,15 @@ class Guest{
          if (guestList.nextLine() == null){ 
             break;
          } 
-      } 
+      }
+      guestList.close();//clean-up 
       String allGuest[][] = new String[n][6]; //two dimentional array
       int guestMenuItem = -1;
-      String item = null;
-      
-      while(guestList.hasNext()){
+      Scanner fileGuestList = new Scanner(new File(""));
+      while(fileGuestList.hasNext()){
          for(int i = 0; i < n; i++){
             for(int j = 0; j < 6; j++){
-               item = guestList.next();
+               String item = fileGuestList.next();
                allGuest[i][j] = item;
             } 
          }
@@ -126,13 +126,13 @@ class Guest{
          System.out.println("5. Change phonenumber:");
          System.out.println("0. Return to main menu:");    
       
-         for(i = 0; i < n; i++){
+         for(i = 0; i < n-1; i++){
             String tmpGuestID = allGuest[i][0];
             if (guestid.equals(tmpGuestID)){ break; }
          }
          break;  
       }
-      guestList.close();
+      
       guestMenuItem = consoleGuest.nextInt();
       
       switch(guestMenuItem){
@@ -174,25 +174,14 @@ class Guest{
          default: System.out.println("Invalid entry, please enter number of the menu you want to access"); break;
       }
       //override the placeholder
-      PrintStream addChange = new PrintStream(new File("StaffList.txt"));
-      for (i = 0; i < n; i++){
+      PrintStream addChange = new PrintStream(new File("GuestList.txt"));
+      for (i = 0; i < n-1; i++){
          addChange.println(allGuest[i][0] + " " + allGuest[i][1] + " " + allGuest[i][2] +
                         " " + allGuest[i][3] + " " + allGuest[i][4] + " " + allGuest[i][5]);
-      }     
+      }
+      guestList.close(); //always close. If not the it will be locked for other process (it cannot be invoked)       
    return 0;
    }
-   /*      
-         
-   
-         //override the placeholder
-         PrintStream addChange = new PrintStream(new File("StaffList.txt"));
-         for (i = 0; i < 4; i++){
-            addChange.println(allGuest[i][0] + " " + allGuest[i][1] + " " + allGuest[i][2] + " " + allGuest[i][3] + " " + allGuest[i][4] + " " + allGuest[i][5]+ " " + allGuest[i][6]+ " " + allGuest[i][7]);
-         }
-      }    
-      return 0;
-   }  
-*/
    
    //getters
    public int getGuestID(){ return guestID; }

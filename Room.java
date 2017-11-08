@@ -30,7 +30,7 @@ public class Room {
         outputToFile.printf("%d %d %b %.2f %d\n",roomID, numberOfBeds, internetAccess, pricePerNight, floor);
     }
     
-    public int readRoomList(int floor)throws Exception{
+    /*public int readRoomList(int floor)throws Exception{
         Scanner roomList = new Scanner(new File("roomList.txt"));
         int[] roomIDEntry = new int[6];
         
@@ -73,7 +73,7 @@ public class Room {
             }
         }
         return -1; //if it didn't find anything in list
-    }
+    }*/
     
     public String internetCode(int floor) throws Exception {
         Scanner read = new Scanner(new File("internet.dat"));
@@ -103,7 +103,7 @@ public class Room {
         else return "Unavailable to reach that floor.";
                     
     }
-    public int numberBeds(){
+    /*public int numberBeds(){
         Scanner input = new Scanner(System.in);
         System.out.print("Would you like 1 or 2 beds in your room?\t:\t");
         int entry = input.nextInt();
@@ -117,8 +117,8 @@ public class Room {
             numberBeds();
         }
         return numberOfBeds;
-    }
-    public void wholeSum(){
+    }*/
+    public int wholeSum(){
         Scanner input = new Scanner(System.in);
         System.out.print("How many days will you be staying in your room?\t :");
         /*
@@ -126,7 +126,10 @@ public class Room {
         */
         int days = input.nextInt();
         sum = pricePerNight * days;
+    
+      return days;
     }
+    
     public String internet(){
         if (internetAccess){ //the condition is true
             if (floor == 1) {
@@ -154,19 +157,19 @@ public class Room {
                 setPricePerNight(200.0);
                 setFloor(1);
                 setInternetAccess(true); //a boolean is default on false
-                numberBeds();
+                //numberBeds();
                 break;
             case "2":
                 setPricePerNight(250.0);
                 setFloor(2);
                 setInternetAccess(true); //a boolean is default on false
-                numberBeds(); 
+                //numberBeds(); 
                 break;
             case "3":
                 setPricePerNight(300.0);
                 setFloor(3);
                 setInternetAccess(true); //a boolean is default on false
-                numberBeds();
+                //numberBeds();
                 break;
             default:
                 //This will run the method again.

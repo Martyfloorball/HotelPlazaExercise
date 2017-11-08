@@ -91,9 +91,9 @@ public class HotelPlazaMain {
             case 7: room1.changePriceForRoom(); break; //set price per night
             case 8: guest.changeGuest(); break;
             case 9: staff.showStaffMenu(); break;
-            //case 10: extendBooking(); break;
-            //case 11: printBill(); break; //create room ha bill?
-            case 12: printRoomList(room); break;
+            case 10: booking.extendBooking(); break;
+            case 11: booking.printBill(); break; //Prints wrong ?
+            case 12: printRoomList(room); break; 
             case 0: System.out.println("Goodbye"); break;
             default : System.out.println("Invalid, please type the number of the menu you wish to access");
          }
@@ -103,18 +103,18 @@ public class HotelPlazaMain {
     }
 
     public static void menu(){
-        System.out.println("1. Create Room");
-        System.out.println("2. Create Guest");
-        System.out.println("3. Print Guest Info");
-        System.out.println("4. Create Staff Member");
-        System.out.println("5. Print Stafflist");
-        System.out.println("6. Create Booking");
-        System.out.println("7. Change Price For Room");
-        System.out.println("8. Change Guest");
-        System.out.println("9. Change Staff");
-        System.out.println("10. Extend Booking");
-        System.out.println("11. Print Receipt");
-        System.out.println("12. Print Rooms");
+        System.out.println("1. Create Room"); //work
+        System.out.println("2. Create Guest"); //work
+        System.out.println("3. Print Guest Info"); //work
+        System.out.println("4. Create Staff Member"); //work
+        System.out.println("5. Print Stafflist"); //work
+        System.out.println("6. Create Booking"); //don't work 
+        System.out.println("7. Change Price For Room"); //don't work properly
+        System.out.println("8. Change Guest"); //fail to work it override the file with null
+        System.out.println("9. Change Staff"); //work
+        System.out.println("10. Extend Booking"); //don't work properly (have no fonction)
+        System.out.println("11. Print Receipt"); //don't work
+        System.out.println("12. Print Rooms"); //work
         System.out.println("0. Exit");
     }
 }

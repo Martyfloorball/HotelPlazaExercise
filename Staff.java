@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 class Staff{   
-   private int staffID;
+   private int staffID = 1;
    private String title;
    private String firstName;
    private String lastName;
@@ -137,13 +137,12 @@ class Staff{
       Scanner consoleStaff = new Scanner(System.in);
       String allStaff[][] = new String[4][8]; //initilize a two dimentional array 
       int staffMenuItem = -1; //a dummy to loop the menu until the sentinal is chosen
-      String Item = null; //initialize a String variable
       Scanner fileStaffList = new Scanner(new File("StaffList.txt")); //scan file
       while (fileStaffList.hasNext()){ //has a token
          for (int i = 0; i < 4; i++){ //there are 4 horzontal lines in array
             for (int j = 0; j < 8; j++){ // there are 8 columns in array 
-               Item = fileStaffList.next(); 
-                  allStaff[i][j] = Item; //puts token in placeholder in array
+               String item = fileStaffList.next(); 
+               allStaff[i][j] = item;
             } 
          }
       }
@@ -165,9 +164,8 @@ class Staff{
                break;
             }
          }
-         fileStaffList.close(); //always close. If not the it will be locked for other process (it cannot be invoked)  
          staffMenuItem = consoleStaff.nextInt(); //make referrence to variable 
-         switch(staffMenuItem){//
+         switch(staffMenuItem){
             case 1:              
                System.out.println("Enter new title:");              
                allStaff[i][1] = chooseTitle(consoleStaff); //let user choose what title
@@ -255,7 +253,8 @@ class Staff{
          for (i = 0; i < 4; i++){
             addChange.println(allStaff[i][0] + " " + allStaff[i][1] + " " + allStaff[i][2] + " " + allStaff[i][3] + " " + allStaff[i][4] + " " + allStaff[i][5]+ " " + allStaff[i][6]+ " " + allStaff[i][7]);
          }
-      }    
+      }
+      fileStaffList.close(); //always close. If not the it will be locked for other process (it cannot be invoked)     
       return 0;
    }  
    //getters
