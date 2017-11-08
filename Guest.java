@@ -9,6 +9,7 @@ class Guest{
    private String addressRoad;
    private int addressNumber;
    private int phoneNumber;
+   public int counter; //for count() method 
    
    public Guest(){} //null constructor
    
@@ -91,29 +92,40 @@ class Guest{
    /*
    changeGuest method see from staff class
    */
-   public int changeGuest() throws Exception{
-      Scanner consoleGuest = new Scanner(System.in);
-      Scanner guestList = new Scanner (new File("GuestList.txt"));
-      int n = 0;
-      while(guestList.hasNextLine()){ 
-         n++; //increment
-         if (guestList.nextLine() == null){ 
+   /*
+   This method is used in change guest.
+   Its purpose is to count the lines.
+   The counter is then used in the changeguest method
+   to determen the placeholder lines in the array.
+   */
+   public int count()throws Exception{
+      Scanner guestList = new Scanner(new File("GuestList.txt"));
+      while(guestList.hasNextLine()){
+         this.counter++; //increment
+         if (guestList.nextLine() == null){ //no more lines break out
             break;
          } 
       }
-      guestList.close();//clean-up 
-      String allGuest[][] = new String[n][6]; //two dimentional array
-      int guestMenuItem = -1;
-      Scanner fileGuestList = new Scanner(new File(""));
+      return this.counter;
+   }
+   public int changeGuest() throws Exception{
+      Scanner consoleGuest = new Scanner(System.in); // user input
+      Scanner fileGuestList = new Scanner(new File("GuestList.txt")); //read file
+      count(); //run method to get count 
+      String allGuest[][] = new String[this.counter][6]; //two dimentional array
+      int guestMenuItem = -1; //a dummy to keep looping 
+      
+      //fill the placeholders in String array
       while(fileGuestList.hasNext()){
-         for(int i = 0; i < n; i++){
+         for(int i = 0; i < this.counter; i++){
             for(int j = 0; j < 6; j++){
                String item = fileGuestList.next();
                allGuest[i][j] = item;
             } 
          }
+         break;
       }  
-      String guestid = new String();
+      String guestid = new String(); //initialize new String 
       int i = 0;
       System.out.println("Enter guest ID to change");
       guestid = consoleGuest.next();
@@ -125,16 +137,18 @@ class Guest{
          System.out.println("4. Change road number on address:");
          System.out.println("5. Change phonenumber:");
          System.out.println("0. Return to main menu:");    
-      
-         for(i = 0; i < n-1; i++){
+         
+         //see if the guest id is equal any of the other id's
+         for(i = 0; i < this.counter; i++){
             String tmpGuestID = allGuest[i][0];
-            if (guestid.equals(tmpGuestID)){ break; }
+            if (guestid.equals(tmpGuestID)){ break; }//check id
          }
          break;  
       }
       
-      guestMenuItem = consoleGuest.nextInt();
+      guestMenuItem = consoleGuest.nextInt();//user input
       
+      //the user case change whatever they what 
       switch(guestMenuItem){
          case 1:
             System.out.println("Enter new firstname");
@@ -157,6 +171,7 @@ class Guest{
          case 4:
             System.out.println("Enter new road number:");
             this.addressNumber = consoleGuest.nextInt();
+            //String is a class in a class called Number that is inherited from the Object class
             String addressNum = String.valueOf(this.addressNumber); //Returns the string representation of the primitive argument. 
             allGuest[i][4] = addressNum;
             break;
@@ -164,7 +179,7 @@ class Guest{
          case 5:
             System.out.println("Enter new phonenumber:");
             this.phoneNumber = consoleGuest.nextInt();
-            String phoneNum = String.valueOf(this.phoneNumber); //Returns the string representation of the primitive argument. 
+            String phoneNum = String.valueOf(this.phoneNumber); 
             allGuest[i][5] = phoneNum;         
             break;
          
@@ -175,11 +190,12 @@ class Guest{
       }
       //override the placeholder
       PrintStream addChange = new PrintStream(new File("GuestList.txt"));
-      for (i = 0; i < n-1; i++){
+      for (i = 0; i < this.counter; i++){
          addChange.println(allGuest[i][0] + " " + allGuest[i][1] + " " + allGuest[i][2] +
                         " " + allGuest[i][3] + " " + allGuest[i][4] + " " + allGuest[i][5]);
       }
-      guestList.close(); //always close. If not the it will be locked for other process (it cannot be invoked)       
+      //clean-up
+      fileGuestList.close(); //always close. If not the it will be locked for other process (it cannot be invoked)       
    return 0;
    }
    
