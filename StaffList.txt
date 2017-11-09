@@ -1,4 +1,4 @@
-1 Director Ole Henriksen 25252525 600000.0 5 54
+1 Director Big Shaq 25252525 600000.0 5 54
 2 Accountant Hanna Janna 66600000 450000.0 6 0
 3 Maintenance John Cena 96969669 250000.0 7 37
 4 Receptionist Jonny Deluxe 80800808 250000.0 6 42
